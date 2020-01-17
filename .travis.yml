@@ -1,0 +1,15 @@
+language: java
+
+jdk:
+- openjdk8
+
+install:
+- mvn install -Dmaven.test.skip=true
+
+script:
+- mvn test -DactiveProfile=test
+after_success:
+- mvn clean test -DactiveProfile=test jacoco:report coveralls:report
+notifications:
+  email:
+  - heyuxian.me@gmail.com
